@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.Random;
+
 import static android.R.attr.right;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,14 +18,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button rollButton;
-        rollButton = (Button) findViewById(R.id.rollbutton);
-        ImageView leftDice = (ImageView)  findViewById(R.id.image_leftdice);
-        ImageView rightdice = (ImageView) findViewById(R.id.image_rightdice);
+            Button rollButton;
+            rollButton = (Button) findViewById(R.id.rollbutton);
+          final   ImageView leftDice = (ImageView) findViewById(R.id.image_leftdice) ;
+           final   ImageView  rightDice = (ImageView) findViewById(R.id.image_rightdice) ;
+           final int [] diceArray = {R.drawable.dice1,
+        R.drawable.dice2,
+        R.drawable.dice3,
+        R.drawable.dice4,
+        R.drawable.dice5,
+        R.drawable.dice6 };
         rollButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Log.d("Dicee", "Ze Button has been pressed!") ;
+            public void onClick(View v) {
+                Log.d  ("Dicee" ,"Ze Button has been pressed!");
+                Random  randomNumberGenerator = new Random();
+                int number = randomNumberGenerator.nextInt(6);
+                Log.d("Dicee", "The random number is:"+number);
+                leftDice.setImageResource(diceArray[number]);
+                number = randomNumberGenerator.nextInt(6);
+                rightDice.setImageResource(diceArray[number]);
+
+
             }
         });
     }
